@@ -1,7 +1,7 @@
 
 
 import { useState } from "react";
-
+import axios from "axios";
 import { CheckCircle } from "lucide-react";
 
 function DemoForm() {
@@ -81,7 +81,7 @@ function DemoForm() {
   // ============================================
   // SUBMIT FORM
   // ============================================
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateForm();
@@ -91,8 +91,23 @@ function DemoForm() {
       return;
     }
 
-    console.log("Demo Request:", formData);
-    setSubmitted(true);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/demo-requests`,
+        formData
+      );
+
+      if (response.data.success) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Demo request failed:", error);
+
+      alert(
+        error.response?.data?.message ||
+        "Failed to submit demo request. Please try again."
+      );
+    }
   };
 
   // ============================================
