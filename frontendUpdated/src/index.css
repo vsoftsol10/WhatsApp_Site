@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  /* Core brand palette — every section pulls from these, nothing else. */
+  --color-brand-green: #1fab5c;
+  --color-brand-green-dark: #0f8a45;
+  --color-brand-green-light: #e3f6ea;
+  --color-brand-yellow: #ffc233;
+  --color-brand-yellow-dark: #e6a800;
+  --color-brand-yellow-light: #fff3d1;
+  --color-brand-cream: #fbfbf8;
+  --color-brand-ink: #14251d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #14251d;
+  background-color: #ffffff;
+}
+
+/* =====================================================
+   Shared section typography — keeps label / heading /
+   body text the same size + color treatment everywhere.
+===================================================== */
+
+.section-eyebrow {
+  margin-bottom: 0.75rem;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-brand-green);
+}
+
+.section-heading {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  color: #111827;
+}
+
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 38px;
+  }
+}
+
+/* =====================================================
+   Motion — one deliberate hero crossfade, one shared
+   hover-lift for interactive elements, and a soft page
+   transition on route change. Reduced-motion friendly.
+===================================================== */
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: heroFade 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageFade 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Animated underline for nav-style text links */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0%;
+  background-color: currentColor;
+  transition: width 0.25s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fadeIn,
+  .page-transition,
+  .hover-lift {
+    animation: none !important;
+    transition: none !important;
+  }
+}
