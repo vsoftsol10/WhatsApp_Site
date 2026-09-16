@@ -132,7 +132,7 @@ function Footer() {
 
               <li>
                 <a
-                  href="#contact"
+                  href="/demo"
                   className="text-[14px] text-gray-400 transition-colors hover:text-brand-green"
                 >
                   Contact
@@ -232,12 +232,12 @@ function Footer() {
               Terms
             </a>
 
-            <a
+            {/* <a
               href="/contact"
               className="transition-colors hover:text-white"
             >
               Contact
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
