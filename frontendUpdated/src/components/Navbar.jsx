@@ -23,41 +23,12 @@ export default function Navbar() {
         {/* LOGO */}
         {/* ================================================= */}
 
-        <Link
-          to="/"
-          className="flex items-center gap-2.5"
-        >
-          <span
-            className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-              rounded-[10px]
-              bg-brand-green
-            "
-          >
-            <img
-              src="/images/whatsapp-icon.svg"
-              alt="WhatsApp"
-              className="h-6 w-6"
-            />
-          </span>
-
-          <span
-            className="
-              text-[20px]
-              font-bold
-              tracking-[-0.3px]
-              text-gray-900
-            "
-          >
-            Whatsapp{" "}
-            <span className="text-brand-green">
-              CRM
-            </span>
-          </span>
+        <Link to="/" className="flex shrink-0 items-center">
+          <img
+            src="/images/vatup-logo-light.png"
+            alt="Vatup CRM"
+            className="h-12 w-auto sm:h-14 lg:h-16"
+          />
         </Link>
 
 
@@ -111,7 +82,7 @@ export default function Navbar() {
             </a>
           </li>
 
-           <li>
+          <li>
             <Link
               to="/demo"
               className="
