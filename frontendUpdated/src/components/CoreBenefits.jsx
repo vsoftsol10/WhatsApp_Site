@@ -1,472 +1,341 @@
-
-// import {
-//   MessageSquare,
-//   FileText,
-//   Send,
-//   Files,
-// } from "lucide-react";
-
-// const benefits = [
-//   {
-//     title: "Conversations",
-//     description:
-//       "All your WhatsApp chats in a single shared inbox — no more switching phones or losing threads.",
-//     icon: MessageSquare,
-//   },
-//   {
-//     title: "Organize Leads",
-//     description:
-//       "Tag, segment and pipeline your contacts so nothing falls through the cracks.",
-//     icon: FileText,
-//   },
-//   {
-//     title: "Campaigns",
-//     description:
-//       "Reach more customers with targeted WhatsApp campaigns. Engage, nurture, and convert leads at scale.",
-//     icon: Send,
-//   },
-//   {
-//     title: "Templates",
-//     description:
-//       "Create ready-to-use WhatsApp messages for every occasion. Save time and communicate faster with consistency.",
-//     icon: Files,
-//   },
-// ];
-
-// function CoreBenefits() {
-//   return (
-//     <section className="w-full bg-white px-6 py-20">
-//       <div className="mx-auto max-w-7xl">
-
-//         {/* ================================================= */}
-//         {/* SECTION HEADING */}
-//         {/* ================================================= */}
-
-//         <div className="mb-12 text-center">
-
-//           {/* Section Label */}
-//           <p className="section-eyebrow">
-//             Core Benefits
-//           </p>
-
-//           {/* Section Title */}
-//           <h2
-//             className="section-heading"
-//           >
-//             Turn conversations into organized customer relationships.
-//           </h2>
-
-//         </div>
-
-
-//         {/* ================================================= */}
-//         {/* MAIN CONTENT */}
-//         {/* ================================================= */}
-
-//         <div
-//           className="
-//             grid
-//             items-center
-//             gap-8
-//             lg:grid-cols-[48%_52%]
-//             lg:gap-4
-//           "
-//         >
-
-//           {/* ================================================= */}
-//           {/* LEFT SIDE - BENEFITS */}
-//           {/* ================================================= */}
-
-//           <div className="space-y-7">
-
-//             {benefits.map((benefit) => {
-//               const Icon = benefit.icon;
-
-//               return (
-//                 <div
-//                   key={benefit.title}
-//                   className="flex gap-5"
-//                 >
-
-//                   {/* Icon */}
-//                   <div
-//                     className="
-//                       flex
-//                       h-12
-//                       w-12
-//                       flex-shrink-0
-//                       items-center
-//                       justify-center
-//                       rounded-xl
-//                       bg-brand-green-light
-//                     "
-//                   >
-//                     <Icon
-//                       size={24}
-//                       strokeWidth={2}
-//                       className="text-brand-green"
-//                     />
-//                   </div>
-
-
-//                   {/* Text */}
-//                   <div className="pt-0.5">
-
-//                     {/* Benefit Title */}
-//                     <h3
-//                       className="
-//                         mb-2
-//                         text-[19px]
-//                         font-semibold
-//                         text-gray-950
-//                       "
-//                     >
-//                       {benefit.title}
-//                     </h3>
-
-
-//                     {/* Benefit Description */}
-//                     <p
-//                       className="
-//                         max-w-[440px]
-//                         text-[15px]
-//                         leading-6
-//                         text-gray-500
-//                       "
-//                     >
-//                       {benefit.description}
-//                     </p>
-
-//                   </div>
-
-//                 </div>
-//               );
-//             })}
-
-//           </div>
-
-
-//           {/* ================================================= */}
-//           {/* RIGHT SIDE - IMAGE */}
-//           {/* ================================================= */}
-
-//           <div className="flex justify-center lg:justify-end">
-
-//             <div className="relative w-full max-w-[700px]">
-
-//               <img
-//                 src="/images/aboutInLanding.png"
-//                 alt="WhatsApp CRM integrations"
-//                 className="
-//                   h-auto
-//                   w-full
-//                   object-contain
-//                   transition-transform
-//                   duration-500
-//                   hover:scale-[1.02]
-//                 "
-//               />
-
-//             </div>
-
-//           </div>
-
-//         </div>
-
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default CoreBenefits;
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  MessageSquare,
-  FileText,
-  Send,
-  Files,
-  Share2,
+  Clock,
+  CreditCard,
+  Globe,
+  HeartHandshake,
   Megaphone,
+  MessageSquareText,
+  Settings,
+  TrendingUp,
+  Users,
 } from "lucide-react";
 
-/* lucide-react no longer ships brand/logo icons, so Instagram and
-   Facebook are small inline SVGs styled to match the other icons. */
-function InstagramIcon({ size = 22, strokeWidth = 2, ...props }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <path d="M16 11.37a4 4 0 1 1-7.914 1.174A4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-    </svg>
-  );
-}
-
-function FacebookIcon({ size = 22, strokeWidth = 2, ...props }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  );
-}
+/* ------------------------------------------------------------------ */
+/* Left column content                                                 */
+/* ------------------------------------------------------------------ */
 
 const benefits = [
   {
-    title: "Conversations",
-    description:
-      "All your WhatsApp chats in a single shared inbox — no more switching phones or losing threads.",
-    icon: MessageSquare,
+    title: "More Leads Into Sales",
+    description: "Follow up with prospects and reduce missed opportunities.",
+    icon: TrendingUp,
+    tile: "linear-gradient(135deg,#34d67f,#17b35c)",
   },
   {
-    title: "Organize Leads",
-    description:
-      "Tag, segment and pipeline your contacts so nothing falls through the cracks.",
-    icon: FileText,
+    title: "Save Time Every Day",
+    description: "Reduce repetitive manual work and simplify team workflows.",
+    icon: Clock,
+    tile: "linear-gradient(135deg,#2fd1b0,#12a58a)",
   },
   {
-    title: "Campaigns",
-    description:
-      "Reach more customers with targeted WhatsApp campaigns. Engage, nurture, and convert leads at scale.",
-    icon: Send,
+    title: "One Place for Every Conversation",
+    description: "Give your team better visibility into customer interactions.",
+    icon: Users,
+    tile: "linear-gradient(135deg,#b6ec3c,#6cc92a)",
   },
   {
-    title: "Templates",
-    description:
-      "Create ready-to-use WhatsApp messages for every occasion. Save time and communicate faster with consistency.",
-    icon: Files,
+    title: "Build Better Customer Relationships",
+    description: "Deliver timely replies and more consistent customer support.",
+    icon: HeartHandshake,
+    tile: "linear-gradient(135deg,#1f9d5a,#0e6b3a)",
   },
 ];
 
-/* ===================================================== */
-/* NODES — order controls the clockwise glow sequence     */
-/* x / y are percentages inside the 400x400 diagram box   */
-/* ===================================================== */
+/* ------------------------------------------------------------------ */
+/* Right column: hub diagram                                           */
+/* ------------------------------------------------------------------ */
 
+function FacebookGlyph() {
+  return (
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-.95.45-1.7 1.8-1.7h1.6V3.8c-.3 0-1.3-.15-2.4-.15-2.5 0-4.1 1.5-4.1 4.2v2.45H7.6v3.3h2.8V22h3.1Z" />
+    </svg>
+  );
+}
+
+function InstagramGlyph() {
+  return (
+    <svg
+      width="38"
+      height="38"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" />
+    </svg>
+  );
+}
+
+// Stage is a 600 x 570 canvas that is scaled to fit its column.
+const STAGE_W = 600;
+const STAGE_H = 570;
+const HUB = { x: 300, y: 285 };
+
+// x / y are offsets of the icon-tile centre from the hub centre.
 const nodes = [
-  { key: "social", label: "Social", icon: Share2, x: 50, y: 8 },
-  { key: "whatsapp", label: "WhatsApp", icon: MessageSquare, x: 88, y: 30 },
-  { key: "instagram", label: "Instagram", icon: InstagramIcon, x: 88, y: 70 },
-  { key: "facebook", label: "Facebook", icon: FacebookIcon, x: 50, y: 92 },
-  { key: "webforms", label: "Web Forms", icon: FileText, x: 12, y: 70 },
-  { key: "googleads", label: "Google Ads", icon: Megaphone, x: 12, y: 30 },
+  {
+    key: "broadcast",
+    label: "Broadcast",
+    dx: 0,
+    dy: -246,
+    line: "#e5483a",
+    tile: "linear-gradient(135deg,#ff8a4c,#ef5a24)",
+    icon: <Megaphone size={32} strokeWidth={2} />,
+    delay: "0s",
+  },
+  {
+    key: "facebook",
+    label: "Facebook",
+    dx: 234,
+    dy: -131,
+    line: "#2f6fe4",
+    tile: "linear-gradient(135deg,#3b8dff,#1264e0)",
+    icon: <FacebookGlyph />,
+    delay: "0.5s",
+  },
+  {
+    key: "instagram",
+    label: "Instagram",
+    dx: 234,
+    dy: 105,
+    line: "#c2185b",
+    tile: "linear-gradient(45deg,#f9a03f,#e1306c 55%,#7b2fb5)",
+    icon: <InstagramGlyph />,
+    delay: "1s",
+  },
+  {
+    key: "billing",
+    label: "Billing Software",
+    dx: 0,
+    dy: 191,
+    line: "#e0a100",
+    tile: "linear-gradient(135deg,#ffd45a,#f2b01e)",
+    icon: <CreditCard size={32} strokeWidth={2} />,
+    delay: "1.5s",
+  },
+  {
+    key: "automation",
+    label: "Automation",
+    dx: -234,
+    dy: 104,
+    line: "#0f9b7a",
+    tile: "linear-gradient(135deg,#43e0bd,#14ae92)",
+    icon: <Settings size={32} strokeWidth={2} />,
+    delay: "2s",
+  },
+  {
+    key: "website",
+    label: "Website",
+    dx: -234,
+    dy: -128,
+    line: "#7c3aed",
+    tile: "linear-gradient(135deg,#a77bff,#7d44e6)",
+    icon: <Globe size={32} strokeWidth={2} />,
+    delay: "2.5s",
+  },
 ];
 
-const CYCLE_MS = 1400;
-
-function WhatsAppDiagram() {
-  const [activeIndex, setActiveIndex] = useState(0);
+function HubDiagram() {
+  const wrapRef = useRef(null);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % nodes.length);
-    }, CYCLE_MS);
-    return () => clearInterval(id);
+    const el = wrapRef.current;
+    if (!el) return;
+    const update = () => setScale(Math.min(1, el.clientWidth / STAGE_W));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
-  const activeKey = nodes[activeIndex].key;
-
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[420px]">
-      <style>{`
-        @keyframes crm-pulse-ring {
-          0% { transform: scale(0.85); opacity: 0.55; }
-          70% { transform: scale(1.35); opacity: 0; }
-          100% { transform: scale(1.35); opacity: 0; }
-        }
-        @keyframes crm-node-glow {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45), 0 4px 14px rgba(34, 197, 94, 0.35); }
-          50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0), 0 4px 22px rgba(34, 197, 94, 0.55); }
-        }
-        .crm-node-active {
-          animation: crm-node-glow 1.4s ease-in-out infinite;
-        }
-      `}</style>
-
-      {/* Ambient pulsing rings behind the center hub */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <span
-          className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-green/20"
-          style={{ animation: "crm-pulse-ring 2.4s ease-out infinite" }}
-        />
-        <span
-          className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-green/20"
-          style={{ animation: "crm-pulse-ring 2.4s ease-out infinite 1.2s" }}
-        />
-      </div>
-
-      {/* Connector lines */}
-      <svg
-        viewBox="0 0 400 400"
-        className="absolute inset-0 h-full w-full"
-        preserveAspectRatio="none"
-      >
-        {nodes.map((node) => {
-          const isActive = node.key === activeKey;
-          return (
-            <line
-              key={node.key}
-              x1={200}
-              y1={200}
-              x2={(node.x / 100) * 400}
-              y2={(node.y / 100) * 400}
-              stroke={isActive ? "#22c55e" : "#bbe8cc"}
-              strokeWidth={isActive ? 2.5 : 1.5}
-              strokeDasharray="6 6"
-              strokeLinecap="round"
-              style={{ transition: "stroke 0.4s ease, stroke-width 0.4s ease" }}
-            />
-          );
-        })}
-      </svg>
-
-      {/* Center hub */}
+    <div ref={wrapRef} className="mx-auto w-full min-w-0 max-w-[560px] overflow-hidden">
       <div
-        className="
-          absolute left-1/2 top-1/2 z-10 flex
-          h-36 w-36 -translate-x-1/2 -translate-y-1/2
-          flex-col items-center justify-center gap-1
-          rounded-full bg-brand-green text-white shadow-lg
-        "
+        className="mx-auto"
+        style={{ width: STAGE_W * scale, height: STAGE_H * scale }}
       >
-        <MessageSquare size={28} strokeWidth={2} />
-        <span className="text-[13px] font-semibold leading-tight">
-          WhatsApp CRM
-        </span>
-      </div>
-
-      {/* Orbiting nodes */}
-      {nodes.map((node) => {
-        const Icon = node.icon;
-        const isActive = node.key === activeKey;
-
-        return (
+        <div
+          className="relative origin-top-left"
+          style={{
+            width: STAGE_W,
+            height: STAGE_H,
+            transform: `scale(${scale})`,
+          }}
+        >
+          {/* soft green glow behind everything */}
           <div
-            key={node.key}
-            className="absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
-            style={{ left: `${node.x}%`, top: `${node.y}%` }}
+            className="absolute rounded-full"
+            style={{
+              left: HUB.x - 270,
+              top: HUB.y - 270,
+              width: 540,
+              height: 540,
+              background:
+                "radial-gradient(circle, rgba(34,212,111,0.20) 0%, rgba(34,212,111,0.08) 45%, rgba(34,212,111,0) 70%)",
+            }}
+          />
+
+          {/* dashed connector lines (flow toward the hub) */}
+          <svg
+            className="absolute inset-0"
+            width={STAGE_W}
+            height={STAGE_H}
+            viewBox={`0 0 ${STAGE_W} ${STAGE_H}`}
           >
-            <div
-              className={`
-                flex h-12 w-12 items-center justify-center rounded-xl
-                transition-all duration-500 ease-out
-                ${isActive
-                  ? "crm-node-active scale-110 bg-brand-green text-white"
-                  : "scale-100 bg-white text-gray-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"}
-              `}
-            >
-              <Icon size={22} strokeWidth={2} />
-            </div>
-            <span
-              className={`
-                text-[12px] transition-colors duration-500
-                ${isActive ? "font-medium text-gray-900" : "text-gray-400"}
-              `}
-            >
-              {node.label}
-            </span>
+            {nodes.map((n) => (
+              <line
+                key={n.key}
+                x1={HUB.x + n.dx}
+                y1={HUB.y + n.dy}
+                x2={HUB.x}
+                y2={HUB.y}
+                stroke={n.line}
+                strokeWidth="2"
+                strokeDasharray="6 5"
+                strokeLinecap="round"
+                className="crm-line-flow"
+              />
+            ))}
+          </svg>
+
+          {/* hub halo rings */}
+          <div
+            className="crm-hub-halo absolute rounded-full"
+            style={{
+              left: HUB.x - 140,
+              top: HUB.y - 140,
+              width: 280,
+              height: 280,
+              background: "rgba(34,212,111,0.14)",
+            }}
+          />
+          <div
+            className="absolute rounded-full"
+            style={{
+              left: HUB.x - 125,
+              top: HUB.y - 125,
+              width: 250,
+              height: 250,
+              background: "rgba(34,212,111,0.22)",
+            }}
+          />
+
+          {/* hub */}
+          <div
+            className="absolute flex flex-col items-center justify-center gap-2 rounded-full text-white"
+            style={{
+              left: HUB.x - 107,
+              top: HUB.y - 107,
+              width: 214,
+              height: 214,
+              background: "linear-gradient(145deg,#2ae27c,#16b657)",
+              boxShadow:
+                "0 20px 45px -12px rgba(22,182,87,0.55), inset 0 2px 0 rgba(255,255,255,0.25)",
+            }}
+          >
+            <MessageSquareText size={46} strokeWidth={1.9} />
+            <span className="text-[19px] font-semibold leading-tight">WhatsApp CRM</span>
           </div>
-        );
-      })}
+
+          {/* orbiting nodes */}
+          {nodes.map((n) => (
+            <div
+              key={n.key}
+              className="crm-node-float absolute flex flex-col items-center"
+              style={{
+                left: HUB.x + n.dx - 60,
+                top: HUB.y + n.dy - 36,
+                width: 120,
+                animationDelay: n.delay,
+              }}
+            >
+              <div
+                className="flex h-[72px] w-[72px] items-center justify-center rounded-[20px] text-white"
+                style={{
+                  background: n.tile,
+                  boxShadow: "0 12px 24px -8px rgba(15,60,40,0.35)",
+                }}
+              >
+                {n.icon}
+              </div>
+              <span className="mt-2 whitespace-nowrap text-[15px] font-medium text-gray-900">
+                {n.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Section                                                             */
+/* ------------------------------------------------------------------ */
+
 function CoreBenefits() {
   return (
-    <section className="w-full bg-white px-6 py-20">
+    <section className="w-full bg-white px-4 py-14 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        {/* ================================================= */}
-        {/* SECTION HEADING */}
-        {/* ================================================= */}
-
-        <div className="mb-12 text-center">
-          <p className="section-eyebrow">Core Benefits</p>
-          <h2 className="section-heading">
-            Turn conversations into organized customer relationships.
-          </h2>
+        {/* Heading — shared section styles */}
+        <div className="mb-10 text-center sm:mb-12">
+          <p className="section-eyebrow">Why Choose Us</p>
+          <h2 className="section-heading">Turn Conversations Into Business Growth</h2>
+          <p className="mx-auto mt-4 max-w-[640px] text-[15px] sm:text-[16px] leading-7 text-gray-500">
+            Everything works together to help your team sell smarter and serve faster.
+          </p>
         </div>
 
-        {/* ================================================= */}
-        {/* MAIN CONTENT */}
-        {/* ================================================= */}
-
-        <div
-          className="
-            grid
-            items-center
-            gap-8
-            lg:grid-cols-[48%_52%]
-            lg:gap-4
-          "
-        >
-          {/* ================================================= */}
-          {/* LEFT SIDE - BENEFITS */}
-          {/* ================================================= */}
-
-          <div className="space-y-7">
-            {benefits.map((benefit) => {
-              const Icon = benefit.icon;
-
-              return (
-                <div key={benefit.title} className="flex gap-5">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-10">
+          {/* LEFT: benefits panel + banner */}
+          <div className="mx-auto w-full min-w-0 max-w-[620px] lg:max-w-none">
+            <div className="rounded-3xl bg-[#eef8f2] px-5 py-2 sm:px-8 sm:py-3">
+              {benefits.map((b, i) => {
+                const Icon = b.icon;
+                return (
                   <div
-                    className="
-                      flex
-                      h-12
-                      w-12
-                      flex-shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-brand-green-light
-                    "
+                    key={b.title}
+                    className={`flex items-center gap-4 py-5 sm:gap-5 sm:py-6 ${
+                      i > 0 ? "border-t border-[#d9ece1]" : ""
+                    }`}
                   >
-                    <Icon size={24} strokeWidth={2} className="text-brand-green" />
+                    <div
+                      className="flex h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0 items-center justify-center rounded-2xl text-white shadow-md"
+                      style={{ background: b.tile }}
+                    >
+                      <Icon size={24} strokeWidth={2} />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-[17px] sm:text-[19px] font-semibold text-[#0d4a2a]">
+                        {b.title}
+                      </h3>
+                      <p className="text-[14px] sm:text-[15px] leading-6 text-gray-500">{b.description}</p>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <div className="pt-0.5">
-                    <h3 className="mb-2 text-[19px] font-semibold text-gray-950">
-                      {benefit.title}
-                    </h3>
-
-                    <p className="max-w-[440px] text-[15px] leading-6 text-gray-500">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* ================================================= */}
-          {/* RIGHT SIDE - ANIMATED DIAGRAM (replaces static image) */}
-          {/* ================================================= */}
-
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[700px]">
-              <WhatsAppDiagram />
+            <div className="mt-4 rounded-3xl bg-[#e3f4ea] px-5 py-6 sm:px-6 sm:py-7 text-center">
+              <h3 className="mb-1.5 text-[18px] sm:text-[20px] font-semibold text-[#0d4a2a]">
+                Less Manual Work. More Meaningful Growth.
+              </h3>
+              <p className="text-[14px] sm:text-[15px] leading-6 text-gray-500">
+                Bring your customer communication into one connected workflow.
+              </p>
             </div>
           </div>
+
+          {/* RIGHT: animated hub */}
+          <HubDiagram />
         </div>
       </div>
     </section>

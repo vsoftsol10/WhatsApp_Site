@@ -1,9 +1,6 @@
-
-
-
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative w-full overflow-hidden bg-white">
       <div
         className="
           mx-auto
@@ -11,9 +8,9 @@ export default function Hero() {
           max-w-7xl
           grid-cols-1
           items-start
-          gap-4
+          gap-6
           px-4
-          pt-8
+          pt-6
           pb-8
           sm:px-6
           sm:pt-10
@@ -34,23 +31,26 @@ export default function Hero() {
 
           <h1
             className="
-              text-[50px]
+              text-[34px]
               font-bold
-              leading-[1.08]
-              tracking-[-1.8px]
+              leading-[1.12]
+              tracking-tight
               text-gray-950
-              sm:text-[58px]
+              xs:text-[40px]
+              sm:text-[54px]
+              sm:leading-[1.08]
+              sm:tracking-[-1.8px]
               lg:text-[66px]
               xl:text-[70px]
             "
           >
             {/* First line */}
-            <span className="block whitespace-nowrap mb-3">
+            <span className="block sm:whitespace-nowrap mb-2 sm:mb-3">
               Stop Losing Leads in
             </span>
 
             {/* Second line */}
-            <span className="block whitespace-nowrap">
+            <span className="block sm:whitespace-nowrap">
               <span className="text-brand-green">
                 WhatsApp
               </span>{" "}
@@ -63,12 +63,14 @@ export default function Hero() {
 
           <p
             className="
-              mt-8
+              mt-5
               max-w-[560px]
-              text-[17px]
-              leading-[1.7]
+              text-[15px]
+              leading-[1.65]
               text-gray-500
+              sm:mt-8
               sm:text-[18px]
+              sm:leading-[1.7]
             "
           >
             One inbox for every conversation, lead, and follow-up — built for
@@ -80,11 +82,13 @@ export default function Hero() {
 
           <div
             className="
-              mt-9
+              mt-6
               flex
               flex-wrap
               items-center
-              gap-4
+              gap-3
+              sm:mt-9
+              sm:gap-4
             "
           >
 
@@ -94,21 +98,27 @@ export default function Hero() {
               href="/demo"
               className="
                 inline-flex
-                h-[54px]
+                h-[48px]
                 items-center
-                gap-2.5
-                rounded-[14px]
+                gap-2
+                rounded-[12px]
                 bg-brand-green
-                px-8
-                text-[17px]
+                px-6
+                text-[15px]
                 font-semibold
                 text-white
                 shadow-lg
                 shadow-brand-green/20
                 transition-all
                 duration-200
-                hover:-translate-y-1
+                hover:-translate-y-0.5
                 hover:shadow-xl
+                sm:h-[54px]
+                sm:gap-2.5
+                sm:rounded-[14px]
+                sm:px-8
+                sm:text-[17px]
+                sm:hover:-translate-y-1
               "
             >
               <svg
@@ -130,21 +140,27 @@ export default function Hero() {
               href="/demo"
               className="
                 inline-flex
-                h-[54px]
+                h-[48px]
                 items-center
-                gap-2.5
-                rounded-[14px]
+                gap-2
+                rounded-[12px]
                 bg-brand-yellow
-                px-8
-                text-[17px]
+                px-6
+                text-[15px]
                 font-semibold
                 text-gray-900
                 shadow-lg
                 shadow-brand-yellow/20
                 transition-all
                 duration-200
-                hover:-translate-y-1
+                hover:-translate-y-0.5
                 hover:shadow-xl
+                sm:h-[54px]
+                sm:gap-2.5
+                sm:rounded-[14px]
+                sm:px-8
+                sm:text-[17px]
+                sm:hover:-translate-y-1
               "
             >
               Get Started
@@ -186,10 +202,11 @@ export default function Hero() {
             alt="Team member replying to a WhatsApp lead"
             className="
               h-auto
-              w-[68%]
-              max-w-[390px]
+              w-[58%]
+              max-w-[320px]
               object-contain
               sm:w-[60%]
+              sm:max-w-[390px]
               lg:w-[82%]
               lg:max-w-[450px]
               xl:w-[80%]
@@ -201,4 +218,3 @@ export default function Hero() {
     </section>
   );
 }
-
