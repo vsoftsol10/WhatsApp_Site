@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
@@ -44,19 +42,21 @@ function FAQ() {
   };
 
   return (
-    <section className="w-full bg-[#f5f5f5] px-6 py-10 md:py-14">
+    <section className="w-full bg-[#f5f5f5] px-4 py-10 sm:px-6 sm:py-12 md:py-14">
       <div className="mx-auto max-w-4xl">
 
         {/* ========================================= */}
         {/* HEADING */}
         {/* ========================================= */}
 
-        <div className="mb-14 text-center">
+        <div className="mb-10 sm:mb-14 text-center">
 
           <p
             className="
-              mb-3
-              text-[22px]
+              mb-2
+              sm:mb-3
+              text-[20px]
+              sm:text-[22px]
               font-bold
               tracking-[-0.2px]
               text-[#00c875]
@@ -67,12 +67,14 @@ function FAQ() {
 
           <h2
             className="
-              text-[32px]
+              text-[26px]
               font-bold
               leading-tight
-              tracking-[-0.8px]
+              tracking-tight
               text-gray-900
+              xs:text-[30px]
               sm:text-[36px]
+              sm:tracking-[-0.8px]
               md:text-[40px]
             "
           >
@@ -82,9 +84,10 @@ function FAQ() {
           <p
             className="
               mx-auto
-              mt-4
+              mt-3
+              sm:mt-4
               max-w-[600px]
-              text-[15px]
+              text-[14px]
               leading-6
               text-gray-500
               sm:text-[16px]
@@ -101,7 +104,7 @@ function FAQ() {
         {/* FAQ LIST */}
         {/* ========================================= */}
 
-        <div className="space-y-4">
+        <div className="space-y-3.5 sm:space-y-4">
 
           {faqData.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -137,14 +140,16 @@ function FAQ() {
                     flex
                     w-full
                     items-center
-                    gap-5
-                    px-7
-                    py-6
+                    gap-3.5
+                    px-5
+                    py-4
                     text-left
                     transition-colors
                     duration-200
                     hover:bg-gray-50
+                    sm:gap-5
                     sm:px-8
+                    sm:py-6
                   "
                 >
 
@@ -179,7 +184,7 @@ function FAQ() {
                   {/* Question */}
                   <span
                     className={`
-                      text-[16px]
+                      text-[15px]
                       font-semibold
                       leading-6
                       transition-colors
@@ -221,12 +226,13 @@ function FAQ() {
                       className="
                         border-t
                         border-gray-100
-                        px-7
-                        pb-7
-                        pl-[68px]
-                        pt-5
+                        px-5
+                        pb-5
+                        pt-4
                         sm:px-8
+                        sm:pb-7
                         sm:pl-[78px]
+                        sm:pt-5
                       "
                     >
                       <p
@@ -257,4 +263,3 @@ function FAQ() {
 }
 
 export default FAQ;
-

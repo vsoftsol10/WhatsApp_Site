@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import axios from "axios";
 import { CheckCircle } from "lucide-react";
@@ -10,7 +8,6 @@ function DemoForm() {
     ownerName: "",
     phone: "",
     email: "",
-
     location: "",
     address: "",
     requirements: "",
@@ -136,7 +133,8 @@ function DemoForm() {
         border
         border-gray-200
         bg-white
-        p-7
+        p-5
+        sm:p-7
         shadow-[0_8px_30px_rgba(0,0,0,0.08)]
         md:p-8
         lg:p-9
@@ -148,12 +146,12 @@ function DemoForm() {
           {/* FORM HEADER */}
           {/* ===================================== */}
 
-          <div className="mb-7">
-            <h2 className="text-[26px] font-bold tracking-[-0.5px] text-gray-900">
+          <div className="mb-6 sm:mb-7">
+            <h2 className="text-[22px] sm:text-[26px] font-bold tracking-[-0.5px] text-gray-900">
               Get a Demo
             </h2>
 
-            <p className="mt-2 text-[15px] leading-6 text-gray-500">
+            <p className="mt-1.5 sm:mt-2 text-[14px] sm:text-[15px] leading-6 text-gray-500">
               Tell us about your team and we'll tailor a walkthrough
               specifically for your business.
             </p>
@@ -163,14 +161,14 @@ function DemoForm() {
           {/* FORM */}
           {/* ===================================== */}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
 
             {/* Company Name + Owner Name */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
 
               {/* Company Name */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Company Name
                 </label>
 
@@ -181,14 +179,17 @@ function DemoForm() {
                   onChange={handleChange}
                   placeholder="ABC Technologies"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -208,7 +209,7 @@ function DemoForm() {
 
               {/* Owner Name */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Owner Name
                 </label>
 
@@ -219,14 +220,17 @@ function DemoForm() {
                   onChange={handleChange}
                   placeholder="John Doe"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -246,11 +250,11 @@ function DemoForm() {
             </div>
 
             {/* Phone + Email */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
 
               {/* Phone */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Phone Number
                 </label>
 
@@ -262,14 +266,17 @@ function DemoForm() {
                   maxLength={10}
                   placeholder="10 digit mobile number"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -289,7 +296,7 @@ function DemoForm() {
 
               {/* Email */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Email Address
                 </label>
 
@@ -300,14 +307,17 @@ function DemoForm() {
                   onChange={handleChange}
                   placeholder="company@gmail.com"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -327,11 +337,11 @@ function DemoForm() {
             </div>
 
             {/* Location + Address */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
 
               {/* Location */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Location
                 </label>
 
@@ -342,14 +352,17 @@ function DemoForm() {
                   onChange={handleChange}
                   placeholder="Tirunelveli"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -369,7 +382,7 @@ function DemoForm() {
 
               {/* Address */}
               <div>
-                <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+                <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                   Address
                 </label>
 
@@ -380,14 +393,17 @@ function DemoForm() {
                   onChange={handleChange}
                   placeholder="Office address"
                   className="
-                    h-12
+                    h-11
+                    sm:h-12
                     w-full
                     rounded-lg
                     border
                     border-gray-200
                     bg-white
-                    px-4
-                    text-[16px]
+                    px-3.5
+                    sm:px-4
+                    text-[15px]
+                    sm:text-[16px]
                     text-gray-900
                     outline-none
                     transition-all
@@ -408,7 +424,7 @@ function DemoForm() {
 
             {/* Requirements */}
             <div>
-              <label className="mb-2 block text-[15px] font-semibold text-gray-800">
+              <label className="mb-1.5 sm:mb-2 block text-[14px] sm:text-[15px] font-semibold text-gray-800">
                 Requirements
               </label>
 
@@ -417,18 +433,22 @@ function DemoForm() {
                 value={formData.requirements}
                 onChange={handleChange}
                 placeholder="Tell us about your needs..."
-                rows={5}
+                rows={4}
                 className="
-                  min-h-[130px]
+                  min-h-[100px]
+                  sm:min-h-[130px]
                   w-full
                   resize-none
                   rounded-lg
                   border
                   border-gray-200
                   bg-white
-                  px-4
-                  py-3
-                  text-[16px]
+                  px-3.5
+                  py-2.5
+                  sm:px-4
+                  sm:py-3
+                  text-[15px]
+                  sm:text-[16px]
                   leading-6
                   text-gray-900
                   outline-none
@@ -453,13 +473,15 @@ function DemoForm() {
               className="
                 mt-2
                 flex
-                h-[52px]
+                h-[48px]
+                sm:h-[52px]
                 w-full
                 items-center
                 justify-center
                 rounded-xl
                 bg-[#00c875]
-                text-[16px]
+                text-[15px]
+                sm:text-[16px]
                 font-bold
                 text-white
                 shadow-[0_6px_18px_rgba(0,200,117,0.25)]
@@ -480,21 +502,21 @@ function DemoForm() {
         /* SUCCESS STATE */
         /* ========================================= */
 
-        <div className="flex min-h-[550px] flex-col items-center justify-center text-center">
+        <div className="flex min-h-[450px] sm:min-h-[550px] flex-col items-center justify-center text-center">
 
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#d9faeb]">
+          <div className="mb-5 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#d9faeb]">
             <CheckCircle
-              size={34}
+              size={32}
               strokeWidth={2}
               className="text-[#00c875]"
             />
           </div>
 
-          <h2 className="text-[26px] font-bold text-gray-900">
+          <h2 className="text-[22px] sm:text-[26px] font-bold text-gray-900">
             Demo Request Received!
           </h2>
 
-          <p className="mt-3 max-w-md text-[16px] leading-7 text-gray-500">
+          <p className="mt-3 max-w-md text-[14px] sm:text-[16px] leading-6 sm:leading-7 text-gray-500">
             Thank you for your interest in WhatsApp CRM. Our team
             will contact you shortly to schedule your demo.
           </p>
@@ -509,7 +531,8 @@ function DemoForm() {
               border-[#00c875]
               px-6
               py-2.5
-              text-[15px]
+              text-[14px]
+              sm:text-[15px]
               font-semibold
               text-[#00b968]
               transition
@@ -525,4 +548,3 @@ function DemoForm() {
 }
 
 export default DemoForm;
-

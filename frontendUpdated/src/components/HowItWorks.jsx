@@ -1,5 +1,3 @@
-
-
 import {
   Share2,
   ClipboardList,
@@ -40,14 +38,14 @@ const steps = [
 
 function HowItWorks() {
   return (
-    <section   id="how-it-works" className="w-full bg-[#f5f5f5] px-6 py-18 md:py-22">
+    <section id="how-it-works" className="w-full bg-[#f5f5f5] px-4 py-14 sm:px-6 sm:py-18 md:py-22">
       <div className="mx-auto max-w-7xl">
 
         {/* ============================================= */}
         {/* SECTION HEADING */}
         {/* ============================================= */}
 
-        <div className="mb-16 text-center">
+        <div className="mb-10 sm:mb-16 text-center">
 
           {/* Label */}
           <p className="section-eyebrow">
@@ -55,9 +53,7 @@ function HowItWorks() {
           </p>
 
           {/* Heading */}
-          <h2
-            className="section-heading"
-          >
+          <h2 className="section-heading">
             From first message to closed deal in four steps
           </h2>
 
@@ -97,8 +93,9 @@ function HowItWorks() {
             className="
               grid
               grid-cols-1
-              gap-12
+              gap-8
               sm:grid-cols-2
+              sm:gap-10
               lg:grid-cols-4
               lg:gap-8
             "
@@ -125,7 +122,7 @@ function HowItWorks() {
                   {/* ICON + NUMBER */}
                   {/* ===================================== */}
 
-                  <div className="relative mb-5">
+                  <div className="relative mb-4 sm:mb-5">
 
                     {/* Icon Box */}
                     <div
@@ -186,7 +183,7 @@ function HowItWorks() {
 
                   <h3
                     className="
-                      mb-2.5
+                      mb-2
                       text-[18px]
                       font-semibold
                       tracking-[-0.2px]
@@ -203,7 +200,7 @@ function HowItWorks() {
 
                   <p
                     className="
-                      max-w-[220px]
+                      max-w-[240px]
                       text-[14px]
                       font-medium
                       leading-[1.6]
@@ -227,4 +224,3 @@ function HowItWorks() {
 }
 
 export default HowItWorks;
-

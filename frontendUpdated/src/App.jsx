@@ -1,10 +1,7 @@
-
-
-
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import Navbar from "./components/Navbar";
-// import WhoItsFor from "./components/WhoItsFor";
+// import FeaturesCarousel from "./components/FeaturesCarousel";
 // import CoreBenefits from "./components/CoreBenefits";
 // import HowItWorks from "./components/HowItWorks";
 // import Testimonials from "./components/Testimonials";
@@ -27,7 +24,7 @@
 
 //       <main>
 //         <HeroCarousel />
-//         <WhoItsFor />
+//         <FeaturesCarousel />
 //         <CoreBenefits />
 //         <HowItWorks />
 //         <Testimonials />
@@ -79,12 +76,13 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import WhoItsFor from "./components/WhoItsFor";
+import FeaturesCarousel from "./components/FeaturesCarousel";
 import CoreBenefits from "./components/CoreBenefits";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 import DemoPage from "./pages/DemoPage";
 import PricingPage from "./pages/PricingPage";
@@ -103,7 +101,7 @@ function HomePage() {
 
       <main>
         <HeroCarousel />
-        <WhoItsFor />
+        <FeaturesCarousel />
         <CoreBenefits />
         <HowItWorks />
         <Testimonials />
@@ -167,10 +165,10 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AnimatedRoutes />
     </BrowserRouter>
   );
 }
 
 export default App;
-
