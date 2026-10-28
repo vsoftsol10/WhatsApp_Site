@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Adds a soft shadow once the page has scrolled, so the fixed bar
+  // separates cleanly from the content passing underneath it.
+  const [scrolled, setScrolled] = useState(false);
 
-  const closeMenu = () => setMobileMenuOpen(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="relative w-full border-b border-gray-100 bg-white">
+    <header
+      className={`sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur transition-shadow duration-300 ${
+        scrolled
+          ? "border-gray-200 shadow-[0_6px_20px_rgba(0,0,0,0.07)]"
+          : "border-gray-100"
+      }`}
+    >
       <nav
         className="
           mx-auto
@@ -17,9 +29,8 @@ export default function Navbar() {
           items-center
           justify-between
           px-4
-          py-4
+          py-5
           sm:px-6
-          sm:py-5
           lg:px-6
           lg:py-6
         "
@@ -28,30 +39,29 @@ export default function Navbar() {
         {/* LOGO */}
         {/* ================================================= */}
 
-        <Link to="/" onClick={closeMenu} className="flex shrink-0 items-center">
+        <Link to="/" className="flex shrink-0 items-center">
           <img
             src="/images/vatup-logo-light.png"
             alt="Vatup CRM"
-            className="h-10 w-auto sm:h-12 lg:h-16"
+            className="h-12 w-auto sm:h-14 lg:h-16"
           />
         </Link>
 
 
         {/* ================================================= */}
-        {/* CENTER NAVIGATION - DESKTOP */}
+        {/* CENTER NAVIGATION */}
         {/* ================================================= */}
 
         <ul
           className="
             hidden
             items-center
-            gap-8
-            lg:gap-11
+            gap-11
             md:flex
           "
         >
 
-          {/* FEATURES */}
+          {/* FEATURES → WHO IT'S FOR */}
           <li>
             <a
               href="/#features"
@@ -106,7 +116,7 @@ export default function Navbar() {
           </li>
 
 
-          {/* PRICING */}
+          {/* PRICING → SEPARATE PAGE */}
           <li>
             <Link
               to="/pricing"
@@ -128,146 +138,35 @@ export default function Navbar() {
 
 
         {/* ================================================= */}
-        {/* RIGHT ACTION: CTA & MOBILE MENU BUTTON */}
+        {/* CTA */}
         {/* ================================================= */}
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <a
-            href="/pricing"
-            className="
-              inline-flex
-              h-[42px]
-              items-center
-              justify-center
-              rounded-[11px]
-              bg-brand-yellow
-              px-4
-              text-[14px]
-              font-semibold
-              text-gray-900
-              shadow-md
-              shadow-brand-yellow/20
-              transition-all
-              duration-200
-              hover:-translate-y-0.5
-              hover:shadow-lg
-              sm:h-[50px]
-              sm:min-w-[145px]
-              sm:rounded-[13px]
-              sm:px-8
-              sm:text-[16px]
-              sm:hover:-translate-y-1
-            "
-          >
-            Start a trial
-          </a>
-
-          {/* Mobile hamburger button */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-            className="
-              flex
-              h-[42px]
-              w-[42px]
-              items-center
-              justify-center
-              rounded-xl
-              border
-              border-gray-200
-              bg-gray-50
-              text-gray-700
-              transition-colors
-              duration-200
-              hover:bg-gray-100
-              md:hidden
-            "
-          >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        <a
+          href="/pricing"
+          className="
+            inline-flex
+            h-[50px]
+            min-w-[145px]
+            items-center
+            justify-center
+            rounded-[13px]
+            bg-brand-yellow
+            px-8
+            text-[16px]
+            font-semibold
+            text-gray-900
+            shadow-md
+            shadow-brand-yellow/20
+            transition-all
+            duration-200
+            hover:-translate-y-1
+            hover:shadow-lg
+          "
+        >
+          Start a trial
+        </a>
 
       </nav>
-
-      {/* ================================================= */}
-      {/* MOBILE MENU DROPDOWN */}
-      {/* ================================================= */}
-      {mobileMenuOpen && (
-        <div className="border-t border-gray-100 bg-white px-4 py-5 shadow-lg md:hidden animate-fadeIn">
-          <ul className="flex flex-col space-y-4">
-            <li>
-              <a
-                href="/#features"
-                onClick={closeMenu}
-                className="
-                  block
-                  py-2
-                  text-[16px]
-                  font-medium
-                  text-gray-800
-                  transition-colors
-                  hover:text-brand-green
-                "
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#how-it-works"
-                onClick={closeMenu}
-                className="
-                  block
-                  py-2
-                  text-[16px]
-                  font-medium
-                  text-gray-800
-                  transition-colors
-                  hover:text-brand-green
-                "
-              >
-                How It Works
-              </a>
-            </li>
-            <li>
-              <Link
-                to="/demo"
-                onClick={closeMenu}
-                className="
-                  block
-                  py-2
-                  text-[16px]
-                  font-medium
-                  text-gray-800
-                  transition-colors
-                  hover:text-brand-green
-                "
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/pricing"
-                onClick={closeMenu}
-                className="
-                  block
-                  py-2
-                  text-[16px]
-                  font-medium
-                  text-gray-800
-                  transition-colors
-                  hover:text-brand-green
-                "
-              >
-                Pricing
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
     </header>
   );
 }

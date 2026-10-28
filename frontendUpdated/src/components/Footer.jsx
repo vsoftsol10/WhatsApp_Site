@@ -49,7 +49,7 @@ function Footer() {
 
               <div className="flex items-center gap-3 text-[14px] text-gray-400">
                 <Phone size={17} className="text-brand-green" />
-                <span>+91 909542237</span>
+                <span>+91 9095422237</span>
               </div>
             </div>
           </div>
