@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { CheckCircle } from "lucide-react";
+import { showPopup } from "./Popup";
 
 function DemoForm() {
   const [formData, setFormData] = useState({
@@ -101,10 +102,9 @@ function DemoForm() {
     } catch (error) {
       console.error("Demo request failed:", error);
 
-      alert(
+      showPopup(
         error.response?.data?.message ||
-        "Failed to submit demo request. Please try again."
-      );
+        "Failed to submit demo request. Please try again.", "error");
     }
   };
 
