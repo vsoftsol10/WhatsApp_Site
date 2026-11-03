@@ -83,6 +83,7 @@ import Testimonials from "./components/Testimonials";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import PopupHost from "./components/Popup";
 
 import DemoPage from "./pages/DemoPage";
 import PricingPage from "./pages/PricingPage";
@@ -167,6 +168,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <AnimatedRoutes />
+      <PopupHost />
     </BrowserRouter>
   );
 }

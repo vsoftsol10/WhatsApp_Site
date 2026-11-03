@@ -3042,6 +3042,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { showPopup } from "./Popup";
 
 import {
   Check,
@@ -3388,19 +3389,18 @@ export default function PurchaseDrawer({
       !formData.email.trim() ||
       !formData.address.trim()
     ) {
-      alert("Please complete all required details.");
+      showPopup("Please complete all required details.", "warning");
       return;
     }
 
     if (emailError === "This email ID is already registered.") {
-      alert("This email ID is already registered.");
+      showPopup("This email ID is already registered.", "warning");
       return;
     }
 
     if (!emailVerified) {
-      alert(
-        "Please verify your email address before continuing."
-      );
+      showPopup(
+        "Please verify your email address before continuing.", "warning");
       return;
     }
 
@@ -3438,7 +3438,7 @@ export default function PurchaseDrawer({
       // ============================================================
 
       if (!selectedPlan) {
-        alert("Please select a plan.");
+        showPopup("Please select a plan.", "warning");
         return;
       }
 
@@ -3453,7 +3453,7 @@ export default function PurchaseDrawer({
         !formData.email.trim() ||
         !formData.address.trim()
       ) {
-        alert("Please complete all required company details.");
+        showPopup("Please complete all required company details.", "warning");
         setStep(1);
         return;
       }
@@ -3463,9 +3463,8 @@ export default function PurchaseDrawer({
       // ============================================================
 
       if (!emailVerified) {
-        alert(
-          "Please verify your email address before making payment."
-        );
+        showPopup(
+          "Please verify your email address before making payment.", "warning");
         setStep(1);
         return;
       }
@@ -3477,9 +3476,8 @@ export default function PurchaseDrawer({
       const scriptLoaded = await loadRazorpayScript();
 
       if (!scriptLoaded || !window.Razorpay) {
-        alert(
-          "Unable to load the payment gateway. Please disable ad blockers, check your internet connection and try again."
-        );
+        showPopup(
+          "Unable to load the payment gateway. Please disable ad blockers, check your internet connection and try again.", "error");
         return;
       }
 
@@ -3553,10 +3551,9 @@ export default function PurchaseDrawer({
       );
 
       if (!response.data.success) {
-        alert(
+        showPopup(
           response.data.message ||
-          "Failed to create payment order."
-        );
+          "Failed to create payment order.", "error");
         return;
       }
 
@@ -3742,10 +3739,9 @@ export default function PurchaseDrawer({
             // ======================================================
 
             else {
-              alert(
+              showPopup(
                 verifyResponse.data.message ||
-                "Payment verification failed."
-              );
+                "Payment verification failed.", "error");
             }
           } catch (error) {
             console.error(
@@ -3759,10 +3755,9 @@ export default function PurchaseDrawer({
               error.response?.status
             );
 
-            alert(
+            showPopup(
               error.response?.data?.message ||
-              "Payment was completed, but verification failed."
-            );
+              "Payment was completed, but verification failed.", "error");
           }
         },
 
@@ -3810,10 +3805,9 @@ export default function PurchaseDrawer({
             response.error
           );
 
-          alert(
+          showPopup(
             response.error?.description ||
-            "Payment failed. Please try again."
-          );
+            "Payment failed. Please try again.", "error");
         }
       );
 
@@ -3834,10 +3828,9 @@ export default function PurchaseDrawer({
         error.response?.status
       );
 
-      alert(
+      showPopup(
         error.response?.data?.message ||
-        "Unable to start Razorpay payment."
-      );
+        "Unable to start Razorpay payment.", "error");
     }
   };
 
@@ -3855,7 +3848,7 @@ export default function PurchaseDrawer({
 
   const handleAddCoupon = () => {
     if (!coupon.trim()) {
-      alert("Please enter a coupon code.");
+      showPopup("Please enter a coupon code.", "warning");
       return;
     }
 
