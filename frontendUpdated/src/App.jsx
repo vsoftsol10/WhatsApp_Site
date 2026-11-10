@@ -79,7 +79,7 @@ import Navbar from "./components/Navbar";
 import FeaturesCarousel from "./components/FeaturesCarousel";
 import CoreBenefits from "./components/CoreBenefits";
 import HowItWorks from "./components/HowItWorks";
-import Testimonials from "./components/Testimonials";
+// import Testimonials from "./components/Testimonials";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -105,7 +105,7 @@ function HomePage() {
         <FeaturesCarousel />
         <CoreBenefits />
         <HowItWorks />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <CTASection />
       </main>
 
