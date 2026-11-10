@@ -1,6 +1,7 @@
 
 // import { useEffect, useState } from "react";
 // import axios from "axios";
+// import { showPopup } from "./Popup";
 
 // import {
 //   Check,
@@ -347,24 +348,43 @@
 //       !formData.email.trim() ||
 //       !formData.address.trim()
 //     ) {
-//       alert("Please complete all required details.");
+//       showPopup("Please complete all required details.", "warning");
 //       return;
 //     }
 
 //     if (emailError === "This email ID is already registered.") {
-//       alert("This email ID is already registered.");
+//       showPopup("This email ID is already registered.", "warning");
 //       return;
 //     }
 
 //     if (!emailVerified) {
-//       alert(
-//         "Please verify your email address before continuing."
-//       );
+//       showPopup(
+//         "Please verify your email address before continuing.", "warning");
 //       return;
 //     }
 
 //     setStep(2);
 //   };
+
+//   // ============================================================
+//   // LOAD RAZORPAY SCRIPT (on demand)
+//   // ============================================================
+
+//   const loadRazorpayScript = () =>
+//     new Promise((resolve) => {
+//       if (window.Razorpay) return resolve(true);
+
+//       const old = document.querySelector(
+//         'script[src*="checkout.razorpay.com"]'
+//       );
+//       if (old) old.remove();
+
+//       const script = document.createElement("script");
+//       script.src = "https://checkout.razorpay.com/v1/checkout.js";
+//       script.onload = () => resolve(true);
+//       script.onerror = () => resolve(false);
+//       document.body.appendChild(script);
+//     });
 
 //   // ============================================================
 //   // RAZORPAY PAYMENT
@@ -377,7 +397,7 @@
 //       // ============================================================
 
 //       if (!selectedPlan) {
-//         alert("Please select a plan.");
+//         showPopup("Please select a plan.", "warning");
 //         return;
 //       }
 
@@ -392,7 +412,7 @@
 //         !formData.email.trim() ||
 //         !formData.address.trim()
 //       ) {
-//         alert("Please complete all required company details.");
+//         showPopup("Please complete all required company details.", "warning");
 //         setStep(1);
 //         return;
 //       }
@@ -402,9 +422,8 @@
 //       // ============================================================
 
 //       if (!emailVerified) {
-//         alert(
-//           "Please verify your email address before making payment."
-//         );
+//         showPopup(
+//           "Please verify your email address before making payment.", "warning");
 //         setStep(1);
 //         return;
 //       }
@@ -413,10 +432,11 @@
 //       // CHECK RAZORPAY SCRIPT
 //       // ============================================================
 
-//       if (!window.Razorpay) {
-//         alert(
-//           "Razorpay is not loaded. Please refresh the page and try again."
-//         );
+//       const scriptLoaded = await loadRazorpayScript();
+
+//       if (!scriptLoaded || !window.Razorpay) {
+//         showPopup(
+//           "Unable to load the payment gateway. Please disable ad blockers, check your internet connection and try again.", "error");
 //         return;
 //       }
 
@@ -490,10 +510,9 @@
 //       );
 
 //       if (!response.data.success) {
-//         alert(
+//         showPopup(
 //           response.data.message ||
-//           "Failed to create payment order."
-//         );
+//           "Failed to create payment order.", "error");
 //         return;
 //       }
 
@@ -679,10 +698,9 @@
 //             // ======================================================
 
 //             else {
-//               alert(
+//               showPopup(
 //                 verifyResponse.data.message ||
-//                 "Payment verification failed."
-//               );
+//                 "Payment verification failed.", "error");
 //             }
 //           } catch (error) {
 //             console.error(
@@ -696,10 +714,9 @@
 //               error.response?.status
 //             );
 
-//             alert(
+//             showPopup(
 //               error.response?.data?.message ||
-//               "Payment was completed, but verification failed."
-//             );
+//               "Payment was completed, but verification failed.", "error");
 //           }
 //         },
 
@@ -747,10 +764,9 @@
 //             response.error
 //           );
 
-//           alert(
+//           showPopup(
 //             response.error?.description ||
-//             "Payment failed. Please try again."
-//           );
+//             "Payment failed. Please try again.", "error");
 //         }
 //       );
 
@@ -771,10 +787,9 @@
 //         error.response?.status
 //       );
 
-//       alert(
+//       showPopup(
 //         error.response?.data?.message ||
-//         "Unable to start Razorpay payment."
-//       );
+//         "Unable to start Razorpay payment.", "error");
 //     }
 //   };
 
@@ -792,7 +807,7 @@
 
 //   const handleAddCoupon = () => {
 //     if (!coupon.trim()) {
-//       alert("Please enter a coupon code.");
+//       showPopup("Please enter a coupon code.", "warning");
 //       return;
 //     }
 
@@ -4556,7 +4571,7 @@ export default function PurchaseDrawer({
                             text-gray-500
                           "
                         >
-                          Billed monthly · GST applied at checkout
+                          Billed yearly · GST applied at checkout
                         </p>
                       </div>
 
@@ -4567,7 +4582,7 @@ export default function PurchaseDrawer({
                           text-gray-900
                         "
                       >
-                        {selectedPlan?.price}/mo
+                        {selectedPlan?.price}/year
                       </div>
                     </div>
 
@@ -5868,7 +5883,7 @@ export default function PurchaseDrawer({
                           text-gray-700
                         "
                       >
-                        {selectedPlan?.name} Plan (GST per month)
+                        {selectedPlan?.name} Plan (yearly)
                       </span>
 
                       <span

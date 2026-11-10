@@ -1,9 +1,12 @@
+
 // import { useEffect, useState } from "react";
 // import { Check } from "lucide-react";
 // import FreeTrialDrawer from "../components/FreeTrialDrawer.jsx";
 // import PurchaseDrawer from "../components/PurchaseDrawer.jsx";
+// import { useNavigate } from "react-router-dom";
 
 // function Pricing() {
+//   const navigate = useNavigate();
 //   const [plans, setPlans] = useState([]);
 //   const [loading, setLoading] = useState(true);
 
@@ -45,12 +48,12 @@
 //   // FORMAT DATABASE PLANS FOR EXISTING UI
 //   // ============================================================
 
-//   const formattedPlans = plans.map((plan) => {
+//   const mappedPlans = plans.map((plan) => {
 //     const planName = plan.planName?.toLowerCase();
 
 //     let type = "normal";
 //     let button = "Get Started";
-//     let period = "/ month";
+//     let period = "/ Year";
 //     let description =
 //       "Essential CRM tools to help you manage your WhatsApp conversations more efficiently.";
 
@@ -72,7 +75,8 @@
 //         "Advanced tools for growing teams that manage more customer conversations.";
 //     }
 
-//     // ENTERPRISE
+//     // ENTERPRISE (custom plan)
+//     // "Contact Us" button -> demo page. No price, no payment drawer.
 //     if (planName === "enterprise") {
 //       type = "enterprise";
 //       button = "Contact Us";
@@ -90,9 +94,11 @@
 
 //       // Format price
 //       price:
-//         plan.isTrial || Number(plan.price) === 0
-//           ? "₹0"
-//           : `₹${Number(plan.price).toLocaleString("en-IN")}`,
+//         planName === "enterprise"
+//           ? "Custom"
+//           : plan.isTrial || Number(plan.price) === 0
+//             ? "₹0"
+//             : `₹${Number(plan.price).toLocaleString("en-IN")}`,
 
 //       period,
 
@@ -106,6 +112,41 @@
 //       features: Array.isArray(plan.features) ? plan.features : [],
 //     };
 //   });
+
+//   // ============================================================
+//   // ENTERPRISE CARD (UI ONLY)
+//   // If the backend does not return an Enterprise plan, show a
+//   // custom Enterprise card so visitors can still contact sales.
+//   // Edit the text below to change what this card says.
+//   // ============================================================
+
+//   const hasEnterprisePlan = mappedPlans.some(
+//     (plan) => plan.type === "enterprise"
+//   );
+
+//   const formattedPlans =
+//     mappedPlans.length > 0 && !hasEnterprisePlan
+//       ? [
+//           ...mappedPlans,
+//           {
+//             id: "enterprise-custom",
+//             name: "Enterprise",
+//             price: "Custom",
+//             period: "",
+//             description:
+//               "Powerful WhatsApp CRM solutions for larger organizations and teams.",
+//             button: "Contact Us",
+//             type: "enterprise",
+//             features: [
+//               "Custom user and customer limits",
+//               "Custom campaign and template limits",
+//               "Higher Facebook, Instagram and website integration limits",
+//               "Priority onboarding and support",
+//               "Plan tailored to your business",
+//             ],
+//           },
+//         ]
+//       : mappedPlans;
 
 //   return (
 //     <section className="w-full bg-[#f5f5f5] px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:py-24">
@@ -277,10 +318,7 @@
 //                       tracking-[-0.8px]
 //                       text-gray-900
 
-//                       ${plan.type === "enterprise"
-//                         ? "text-[23px] sm:text-[25px]"
-//                         : "text-[30px] sm:text-[34px]"
-//                       }
+//                       text-[30px] sm:text-[34px]
 //                     `}
 //                   >
 //                     {plan.price}
@@ -376,6 +414,11 @@
 //                       setShowTrialDrawer(true);
 //                     }
 
+//                     // ENTERPRISE PLAN -> DEMO PAGE
+//                     if (plan.type === "enterprise") {
+//                       navigate("/demo");
+//                     }
+
 //                     // NORMAL / POPULAR PLANS
 //                     if (
 //                       plan.type === "normal" ||
@@ -383,11 +426,6 @@
 //                     ) {
 //                       setSelectedPlan(plan);
 //                       setShowPurchaseDrawer(true);
-//                     }
-
-//                     // ENTERPRISE
-//                     if (plan.type === "enterprise") {
-//                       // Keep existing Contact Us behavior
 //                     }
 
 //                   }}
@@ -412,9 +450,7 @@
 
 //                     ${plan.type === "popular"
 //                       ? "bg-[#ffbf00] text-gray-900 hover:bg-[#ffc62e]"
-//                       : plan.type === "enterprise"
-//                         ? "border-2 border-[#00c875] bg-white text-[#00b968] hover:bg-[#eafff5]"
-//                         : "bg-[#00b968] text-white hover:bg-[#00a85f]"
+//                       : "bg-[#00b968] text-white hover:bg-[#00a85f]"
 //                     }
 //                   `}
 //                 >
@@ -460,7 +496,6 @@
 // }
 
 // export default Pricing;
-
 
 
 
@@ -519,7 +554,7 @@ function Pricing() {
 
     let type = "normal";
     let button = "Get Started";
-    let period = "/ Year";
+    let period = "/ month";
     let description =
       "Essential CRM tools to help you manage your WhatsApp conversations more efficiently.";
 
@@ -552,6 +587,27 @@ function Pricing() {
         "Powerful WhatsApp CRM solutions for larger organizations and teams.";
     }
 
+    // ----------------------------------------------------------
+    // MONTHLY DISPLAY PRICE
+    // The backend price is the YEARLY price. The landing page shows
+    // yearly / 12 as the headline "per month" price, with the real
+    // yearly amount underneath. Payment always uses the yearly price.
+    // ----------------------------------------------------------
+    const isPaidPlan =
+      planName !== "enterprise" &&
+      !plan.isTrial &&
+      Number(plan.price) > 0;
+
+    const yearlyAmount = isPaidPlan ? Number(plan.price) : 0;
+
+    const monthlyPrice = isPaidPlan
+      ? `₹${Math.round(yearlyAmount / 12).toLocaleString("en-IN")}`
+      : null;
+
+    const yearlyPrice = isPaidPlan
+      ? `₹${yearlyAmount.toLocaleString("en-IN")}`
+      : null;
+
     return {
       ...plan,
 
@@ -559,12 +615,17 @@ function Pricing() {
       name: plan.planName,
 
       // Format price
+      // NOTE: `price` stays the YEARLY amount - PurchaseDrawer reads it.
       price:
         planName === "enterprise"
           ? "Custom"
           : plan.isTrial || Number(plan.price) === 0
             ? "₹0"
             : `₹${Number(plan.price).toLocaleString("en-IN")}`,
+
+      // Display-only fields for the pricing card
+      monthlyPrice,
+      yearlyPrice,
 
       period,
 
@@ -787,7 +848,7 @@ function Pricing() {
                       text-[30px] sm:text-[34px]
                     `}
                   >
-                    {plan.price}
+                    {plan.monthlyPrice || plan.price}
                   </span>
 
                   {plan.period && (
@@ -804,6 +865,13 @@ function Pricing() {
                   )}
 
                 </div>
+
+                {/* Yearly amount shown below the monthly price */}
+                {plan.yearlyPrice && (
+                  <p className="-mt-3 mb-4 sm:-mt-4 sm:mb-5 text-[13px] sm:text-[14px] font-medium text-gray-500">
+                    Pay {plan.yearlyPrice} yearly
+                  </p>
+                )}
 
                 {/* ================================================= */}
                 {/* DESCRIPTION */}
