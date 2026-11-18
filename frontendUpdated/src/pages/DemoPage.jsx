@@ -471,7 +471,7 @@ function DemoPage() {
                 >
                   Vannarapettai, Tirunelveli,
                   <br />
-                  Tamilnadu - 627002, India.
+                  Tamilnadu - 627003, India.
                 </p>
               </div>
 
