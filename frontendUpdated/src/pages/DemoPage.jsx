@@ -405,7 +405,7 @@ function DemoPage() {
                 </p>
 
                 <p className="mt-1 sm:mt-2 break-all text-[15px] sm:text-[16px] font-semibold text-gray-900">
-                  whatsappcrm@gmail.com
+                  vatupvsoft@gmail.com
                 </p>
 
                 <p className="mt-0.5 sm:mt-1 text-[13px] sm:text-[14px] text-gray-500">
